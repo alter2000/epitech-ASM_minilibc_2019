@@ -1,6 +1,6 @@
-global astrchr:function
+global strchr:function
 
-astrchr:
+strchr:
 	push rbp
 	mov rbp, rsp
 	xor rax, rax
