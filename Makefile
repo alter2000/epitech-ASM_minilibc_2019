@@ -23,7 +23,7 @@ $(NAME): $(OBJ)
 	$(CPL) -o $(NAME) $(OBJ) $(LDFLAGS) -g
 
 debug: $(SRC)
-	$(CPL) -o $(NAME) $(SRC) $(DFLAGS) $(LDFLAGS)
+	$(CPL) -o $(NAME) $(OBJ) $(DFLAGS) $(LDFLAGS)
 
 clean:
 	$(foreach var, $(OBJ), if [ -e $(var) ] ; then rm -f $(var) ; fi;)
