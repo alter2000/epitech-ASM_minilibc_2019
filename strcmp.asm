@@ -1,5 +1,4 @@
 default rel
-byte 64
 global strcmp:function
 
 section .text
