@@ -8,25 +8,28 @@
 SRC = $(shell find . -name "*.asm")
 
 NAME = libasm.so
-LDFLAGS = -shared
+LDFLAGS = -shared -fPIC
 CPL = gcc
 CFLAGS = -Wextra -Wall -I. -fPIC
 DFLAGS = -Wextra -Wall -I. -fPIC -g
 ASM = nasm
-ASFLAGS = -f elf64
+ASFLAGS = -felf64 -F dwarf -g
 
 OBJ = $(SRC:.asm=.o)
 
 all: $(NAME)
 
+%.o: %.asm
+	$(ASM) $(ASFLAGS) $< -o $@
+
 $(NAME): $(OBJ)
-	$(CPL) -o $(NAME) $(OBJ) $(LDFLAGS) -g
+	ld -o $(NAME) $(LDFLAGS) -g $(OBJ)
 
 debug: $(SRC)
 	$(CPL) -o $(NAME) $(OBJ) $(DFLAGS) $(LDFLAGS)
 
 clean:
-	$(foreach var, $(OBJ), if [ -e $(var) ] ; then rm -f $(var) ; fi;)
+	find . -name "*.o" -delete
 	rm -f vgcore.*
 
 fclean: clean
@@ -35,8 +38,5 @@ fclean: clean
 re:
 	$(MAKE) fclean
 	$(MAKE) all
-
-%.o: %.asm
-	$(ASM) $(ASFLAGS) $< -o $@
 
 .PHONY: all clean fclean re

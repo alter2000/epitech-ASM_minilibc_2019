@@ -1,6 +1,9 @@
+default rel
+bits 64
+
 global strlen:function
 
-	bits 64
+section .text
 strlen:
 	xor rcx, rcx
 	mov rax, rcx

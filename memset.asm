@@ -1,5 +1,9 @@
+default rel
+bits 64
+
 global memset:function
 
+section .text
 memset:
 	push rbp
 	mov rbp, rsp

@@ -1,5 +1,9 @@
+default rel
+bits 64
+
 global strchr:function
 
+section .text
 strchr:
 	push rbp
 	mov rbp, rsp

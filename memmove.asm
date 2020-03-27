@@ -1,5 +1,9 @@
+default rel
+bits 64
+
 global memmove:function
 
+section .text
 memmove:
 	push rbp
 	mov rbp, rsp
