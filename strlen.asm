@@ -18,4 +18,5 @@ strlen:
 	jmp .loop
 
 .end:
+	leave
 	ret
