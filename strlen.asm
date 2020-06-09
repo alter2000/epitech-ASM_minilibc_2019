@@ -5,18 +5,22 @@ global strlen:function
 
 section .text
 strlen:
-	xor rcx, rcx
-	mov rax, rcx
-	jmp .loop
+	push ebp
+	mov ebp, esp
+	push edi
+
+	mov edi, [ebp+8]
+	xor al, al
+	cld
 
 .loop:
-	cmp rdi, 0
-	je .end
-	cmp byte [rdi + rax], 0
-	je .end
-	inc rax
-	jmp .loop
+	scasb
+	jne .loop
 
-.end:
+	mov eax, edi
+	dec eax
+	sub eax, [ebp+8]
+
+	pop edi
 	leave
 	ret
