@@ -5,9 +5,9 @@ global strlen:function
 
 section .text
 strlen:
-	push ebp
+	push rbp
 	mov ebp, esp
-	push edi
+	push rdi
 
 	mov edi, [ebp+8]
 	xor al, al
@@ -21,6 +21,6 @@ strlen:
 	dec eax
 	sub eax, [ebp+8]
 
-	pop edi
+	pop rdi
 	leave
 	ret
